@@ -1,7 +1,10 @@
 import { createContext, useState, useEffect } from 'react';
 import questsData from 'data/quests.json';
 
-export const QuestsContext = createContext([]);
+export const QuestsContext = createContext({
+  questList: [],
+  createQuest: (quest) => {},
+});
 
 export const QuestsProvider = ({ children }) => {
   const [questList, setQuestList] = useState([]);
@@ -14,20 +17,18 @@ export const QuestsProvider = ({ children }) => {
     }
   }, []);
 
-  const addNewQuest = ({ title, description, level }) => {
-    console.log(typeof level);
+  const createQuest = (quest) => {
     const newQuest = {
       id: questList.length + 1,
-      title: title,
-      description: description,
+      title: quest.title,
+      description: quest.description,
       level: {
-        required: level,
-        recommended: parseInt(level) + 3,
+        required: quest.level,
+        recommended: parseInt(quest.level) + 3,
       },
-      isShareable: false,
+      isShareable: quest.isShareable,
       prerequisites: [],
     };
-    console.log(newQuest);
 
     setQuestList((prevQuests) => {
       return [...prevQuests, newQuest];
@@ -35,7 +36,7 @@ export const QuestsProvider = ({ children }) => {
   };
 
   return (
-    <QuestsContext.Provider value={{ questList, addNewQuest }}>
+    <QuestsContext.Provider value={{ questList, addNewQuest: createQuest }}>
       {children}
     </QuestsContext.Provider>
   );

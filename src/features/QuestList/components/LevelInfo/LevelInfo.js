@@ -23,7 +23,7 @@ export const LevelInfo = ({ level }) => {
 
   return (
     <div className='mb-1'>
-      <h4 className='h4'>Level</h4>
+      <h5 className='h5'>Level</h5>
       <span className='d-block'>Required: {level.required}</span>
       <span>Recommended: {level.recommended}</span>
       <div className='mt-1'>

@@ -17,12 +17,12 @@ export const QuestItem = (props) => {
       >
         {isShareableText}
       </Badge>
-      <h3 className='h3'>{title}</h3>
+      <h4 className='h4'>{title}</h4>
       <p className='mb-1'>{description}</p>
       <LevelInfo level={level} />
       {prerequisites.length > 0 && (
         <div>
-          <h4 className='h4'>Prerequisites:</h4>
+          <h5 className='h5'>Prerequisites:</h5>
           <List variant='unstyled'>
             {prerequisites.map((prerequisite, i) => {
               return <ListItem key={`${id}-${i}`}>{prerequisite}</ListItem>;
