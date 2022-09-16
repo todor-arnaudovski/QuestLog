@@ -1,0 +1,11 @@
+.quest-list__item-wrapper {
+  padding: 30px 40px;
+}
+
+.quest-list__item-wrapper:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.quest-list__description {
+  max-width: 50%;
+}

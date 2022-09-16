@@ -1,0 +1,30 @@
+@import 'assets/styles/_variables.scss';
+$corner-positions: 'top-left' 'top' 'left', 'top-right' 'top' 'right',
+  'bottom-left' 'bottom' 'left', 'bottom-right' 'bottom' 'right';
+
+.badge {
+  font-family: $font-secondary;
+  padding: 2px 10px;
+  border-radius: 1rem;
+  &:not(.inline) {
+    position: absolute;
+  }
+  @each $name, $y, $x in $corner-positions {
+    &.#{$name} {
+      #{$x}: 0;
+      #{$y}: -10px;
+    }
+  }
+  &.warning {
+    color: $color-dark;
+    background-color: $color-warning;
+  }
+  &.success {
+    color: $color-white;
+    background-color: $color-success;
+  }
+  &.danger {
+    color: $color-white;
+    background-color: $color-danger;
+  }
+}

@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Morpheus';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../assets/fonts/Morpheus.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Frizqt';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../assets/fonts/Frizqt.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Arilan';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../assets/fonts/Arilan.ttf') format('truetype');
+}
+
+// Fonts
+$font-primary-const: 'Morpheus';
+$font-secondary-const: 'Arilan';

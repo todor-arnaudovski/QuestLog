@@ -1,0 +1,17 @@
+@import 'assets/styles/variables.scss';
+
+.input {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: #{$color-light}bf;
+  // border: 2px solid #{$color-dark}4d;
+  border: none;
+  box-shadow: 0px 0px 5px 0 #{$color-dark}4d;
+  width: 100%;
+  max-width: 100%;
+  min-height: 35px;
+  &:focus-visible {
+    outline: #{$color-primary}bf solid 2px;
+  }
+}

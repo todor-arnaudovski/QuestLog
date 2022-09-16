@@ -1,0 +1,100 @@
+@import 'variables.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  font-family: $font-secondary;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-primary;
+}
+// Utilities
+.position-relative {
+  position: relative;
+}
+.d-block {
+  display: block;
+}
+.d-inline-block {
+  display: inline-block;
+}
+.w-50 {
+  max-width: 50%;
+}
+.text-center {
+  text-align: center;
+}
+// Color
+.text-white {
+  color: $color-white;
+}
+.text-light {
+  color: $color-light;
+}
+.text-dark {
+  color: $color-dark;
+}
+.text-success {
+  color: $color-success;
+}
+.text-warning {
+  color: $color-warning;
+}
+.text-danger {
+  color: $color-danger;
+}
+// Background Color
+.bg-fade-light {
+  background-color: #{$color-light}4d; // alpha: 4d = 30%
+  box-shadow: 0 0 4px 4px #{$color-dark}1a;
+}
+// Headings
+$heading-spacer: 0.5;
+.h1 {
+  font-size: 3.052rem;
+  margin-bottom: 1.563 * $heading-spacer + rem;
+}
+.h2 {
+  font-size: 2.441rem;
+  margin-bottom: 1.25 * $heading-spacer + rem;
+}
+.h3 {
+  font-size: 1.953rem;
+  margin-bottom: 1 * $heading-spacer + rem;
+}
+.h4 {
+  font-size: 1.563rem;
+  margin-bottom: 0.8 * $heading-spacer + rem;
+}
+.h5 {
+  font-size: 1.25rem;
+  margin-bottom: 0.64 * $heading-spacer + rem;
+}
+.h6 {
+  font-size: 1rem;
+  margin-bottom: 0.512 * $heading-spacer + rem;
+}
+// Scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  position: relative;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #0000004d;
+  border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $color-dark;
+  border-radius: 10px;
+  cursor: grab;
+}

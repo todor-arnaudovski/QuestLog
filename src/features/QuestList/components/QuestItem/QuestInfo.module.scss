@@ -1,0 +1,7 @@
+@import 'assets/styles/_variables.scss';
+
+.quest-item {
+  border-top: 2px solid $color-dark;
+  border-bottom: 2px solid $color-dark;
+  padding: $spacer + rem;
+}

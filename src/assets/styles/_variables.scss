@@ -1,0 +1,25 @@
+@import 'constants.scss';
+
+// Fonts
+$font-primary: $font-primary-const;
+$font-secondary: $font-secondary-const;
+
+// Media sizes
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+$screen-xxl: 1400px;
+
+// Spacers
+$spacer: 1;
+
+// Color
+$color-primary: #2d5ec2;
+$color-white: #fff;
+$color-dark: #231f20;
+$color-muted: #636363;
+$color-light: #efe6dd;
+$color-warning: #ffdf7e;
+$color-success: #52b35c;
+$color-danger: #bb4430;

@@ -1,0 +1,43 @@
+@use 'assets/styles/mixins.scss' as mixin;
+
+$sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+
+.grid-item {
+  grid-column: span 12;
+}
+
+@include mixin.min-width-sm {
+  @each $size in $sizes {
+    .sm-#{$size} {
+      grid-column: span $size;
+    }
+  }
+}
+@include mixin.min-width-md {
+  @each $size in $sizes {
+    .md-#{$size} {
+      grid-column: span $size;
+    }
+  }
+}
+@include mixin.min-width-lg {
+  @each $size in $sizes {
+    .lg-#{$size} {
+      grid-column: span $size;
+    }
+  }
+}
+@include mixin.min-width-xl {
+  @each $size in $sizes {
+    .xl-#{$size} {
+      grid-column: span $size;
+    }
+  }
+}
+@include mixin.min-width-xxl {
+  @each $size in $sizes {
+    .xxl-#{$size} {
+      grid-column: span $size;
+    }
+  }
+}

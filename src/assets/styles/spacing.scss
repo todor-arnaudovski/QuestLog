@@ -1,0 +1,143 @@
+// @use 'assets/styles/mixins.scss' as mixin;
+@import 'assets/styles/variables.scss';
+
+$unit: rem;
+$breakpoints: (
+  'sm': $screen-sm,
+  'md': $screen-md,
+  'lg': $screen-lg,
+  'xl': $screen-xl,
+  'xxl': $screen-xxl,
+);
+$sizes: (
+  '0': 0,
+  '1': 0.618,
+  '2': 1,
+  '3': 1.618,
+  '4': 2.618,
+  '5': 4.236,
+);
+
+@each $size, $amount in $sizes {
+  .m-#{$size} {
+    margin-top: $amount + $unit !important;
+    margin-right: $amount + $unit !important;
+    margin-bottom: $amount + $unit !important;
+    margin-left: $amount + $unit !important;
+  }
+  .mt-#{$size} {
+    margin-top: $amount + $unit !important;
+  }
+  .mb-#{$size} {
+    margin-bottom: $amount + $unit !important;
+  }
+  .ms-#{$size} {
+    margin-left: $amount + $unit !important;
+  }
+  .me-#{$size} {
+    margin-right: $amount + $unit !important;
+  }
+  .mx-#{$size} {
+    margin-left: $amount + $unit !important;
+    margin-right: $amount + $unit !important;
+  }
+  .my-#{$size} {
+    margin-top: $amount + $unit !important;
+    margin-bottom: $amount + $unit !important;
+  }
+}
+
+@each $size, $amount in $sizes {
+  .p-#{$size} {
+    padding-top: $amount + $unit !important;
+    padding-right: $amount + $unit !important;
+    padding-bottom: $amount + $unit !important;
+    padding-left: $amount + $unit !important;
+  }
+  .pt-#{$size} {
+    padding-top: $amount + $unit !important;
+  }
+  .pb-#{$size} {
+    padding-bottom: $amount + $unit !important;
+  }
+  .ps-#{$size} {
+    padding-left: $amount + $unit !important;
+  }
+  .pe-#{$size} {
+    padding-right: $amount + $unit !important;
+  }
+  .px-#{$size} {
+    padding-left: $amount + $unit !important;
+    padding-right: $amount + $unit !important;
+  }
+  .py-#{$size} {
+    padding-top: $amount + $unit !important;
+    padding-bottom: $amount + $unit !important;
+  }
+}
+
+// Spacing with media queries
+@mixin create-breakpoint-for-each-size($sizeName, $sizeValue) {
+  @each $breakpointName, $breakpointValue in $breakpoints {
+    @media only screen and (min-width: $breakpointValue) {
+      // Margin
+      .m-#{$breakpointName}-#{$sizeName} {
+        margin-top: $sizeValue + $unit !important;
+        margin-right: $sizeValue + $unit !important;
+        margin-bottom: $sizeValue + $unit !important;
+        margin-left: $sizeValue + $unit !important;
+      }
+      .mt-#{$breakpointName}-#{$sizeName} {
+        margin-top: $sizeValue + $unit !important;
+      }
+      .mb-#{$breakpointName}-#{$sizeName} {
+        margin-bottom: $sizeValue + $unit !important;
+      }
+      .ms-#{$breakpointName}-#{$breakpointName}-#{$sizeName} {
+        margin-left: $sizeValue + $unit !important;
+      }
+      .me-#{$breakpointName}-#{$sizeName} {
+        margin-right: $sizeValue + $unit !important;
+      }
+      .mx-#{$breakpointName}-#{$sizeName} {
+        margin-left: $sizeValue + $unit !important;
+        margin-right: $sizeValue + $unit !important;
+      }
+      .my-#{$breakpointName}-#{$sizeName} {
+        margin-top: $sizeValue + $unit !important;
+        margin-bottom: $sizeValue + $unit !important;
+      }
+      // Padding
+      .p-#{$breakpointName}-#{$sizeName} {
+        padding-top: $sizeValue + $unit !important;
+        padding-right: $sizeValue + $unit !important;
+        padding-bottom: $sizeValue + $unit !important;
+        padding-left: $sizeValue + $unit !important;
+      }
+      .pt-#{$breakpointName}-#{$sizeName} {
+        padding-top: $sizeValue + $unit !important;
+      }
+      .pb-#{$breakpointName}-#{$sizeName} {
+        padding-bottom: $sizeValue + $unit !important;
+      }
+      .ps-#{$breakpointName}-#{$sizeName} {
+        padding-left: $sizeValue + $unit !important;
+      }
+      .pe-#{$breakpointName}-#{$sizeName} {
+        padding-right: $sizeValue + $unit !important;
+      }
+      .px-#{$breakpointName}-#{$sizeName} {
+        padding-left: $sizeValue + $unit !important;
+        padding-right: $sizeValue + $unit !important;
+      }
+      .py-#{$breakpointName}-#{$sizeName} {
+        padding-top: $sizeValue + $unit !important;
+        padding-bottom: $sizeValue + $unit !important;
+      }
+    }
+  }
+}
+
+@each $sizeName, $sizeValue in $sizes {
+  @include create-breakpoint-for-each-size($sizeName, $sizeValue);
+}

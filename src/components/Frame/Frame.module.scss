@@ -1,0 +1,41 @@
+@import 'assets/styles/variables.scss';
+
+$position: 1.3rem;
+$dimension: 2rem;
+$corner-positions: 'top-left' 'top' 'left', 'top-right' 'top' 'right',
+  'bottom-left' 'bottom' 'left', 'bottom-right' 'bottom' 'right';
+
+.frame {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: $spacer + rem;
+  border-width: 10px;
+  border-style: solid;
+  position: relative;
+  z-index: 99;
+  box-shadow: 0 0 10px 10px #{$color-dark}4d,
+    inset 0 0 10px 5px #{$color-dark}4d;
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-color: #{$color-dark}1a;
+  }
+}
+
+.corner {
+  position: absolute;
+  z-index: 100;
+  border-radius: 5px;
+  width: $dimension;
+  height: $dimension;
+  box-shadow: 0 0 10px 5px #{$color-dark}4d;
+  @each $name, $x, $y in $corner-positions {
+    &.#{$name} {
+      #{$x}: -$position;
+      #{$y}: -$position;
+    }
+  }
+}

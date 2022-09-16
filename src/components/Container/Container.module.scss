@@ -1,0 +1,29 @@
+@use 'assets/styles/mixins.scss' as mixin;
+
+// Max-widths
+$container-sm: 540px;
+$container-md: 720px;
+$container-lg: 960px;
+$container-xl: 1140px;
+$container-xxl: 1320px;
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  @include mixin.px-1;
+  @include mixin.min-width-sm {
+    width: $container-sm;
+  }
+  @include mixin.min-width-md {
+    width: $container-md;
+  }
+  @include mixin.min-width-lg {
+    width: $container-lg;
+  }
+  @include mixin.min-width-xl {
+    width: $container-xl;
+  }
+  @include mixin.min-width-xxl {
+    width: $container-xxl;
+  }
+}

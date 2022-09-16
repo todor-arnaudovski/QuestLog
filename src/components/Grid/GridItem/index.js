@@ -1,0 +1,1 @@
+export { GirdItem } from './GirdItem';

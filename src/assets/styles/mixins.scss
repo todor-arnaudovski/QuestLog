@@ -1,0 +1,32 @@
+@import './variables';
+
+@mixin px-1 {
+  padding-left: $spacer * 1rem;
+  padding-right: $spacer * 1rem; 
+}
+// Media queries
+@mixin min-width-sm {
+  @media only screen and (min-width: $screen-sm) {
+    @content;
+  }
+}
+@mixin min-width-md {
+  @media only screen and (min-width: $screen-md) {
+    @content;
+  }
+}
+@mixin min-width-lg {
+  @media only screen and (min-width: $screen-lg) {
+    @content;
+  }
+}
+@mixin min-width-xl {
+  @media only screen and (min-width: $screen-xl) {
+    @content;
+  }
+}
+@mixin min-width-xxl {
+  @media only screen and (min-width: $screen-xxl) {
+    @content;
+  }
+}
