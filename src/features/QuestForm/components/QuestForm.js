@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { QuestsContext } from 'context/QuestsContext';
 
 import { Form } from 'components/Form';
 import { InputGroup } from 'components/Form/InputGroup';
@@ -10,6 +11,7 @@ import { Button } from 'components/Button';
 
 export const QuestForm = ({ className }) => {
   const [inputs, setInputs] = useState({});
+  const questsContext = useContext(QuestsContext);
 
   const onChangeHandler = (e) => {
     setInputs((prevState) => {
@@ -20,7 +22,8 @@ export const QuestForm = ({ className }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    console.log(inputs);
+    questsContext.addNewQuest(inputs);
+
     setInputs({});
   };
 
@@ -31,19 +34,21 @@ export const QuestForm = ({ className }) => {
       <h3 className='h3 mb-2 text-center'>Create New Quest</h3>
       <Form onSubmit={onSubmitHandler}>
         <InputGroup className='mb-1 mb-lg-2'>
-          <Label htmlFor='name' label='Quest Name:' />
+          <Label htmlFor='title' label='Title:' />
           <Input
-            id='name'
+            required
+            id='title'
             type='text'
-            placeholder='Enter quest name...'
-            name='name'
-            value={inputs.name || ''}
+            placeholder='Enter quest title...'
+            name='title'
+            value={inputs.title || ''}
             onChange={onChangeHandler}
           />
         </InputGroup>
         <InputGroup className='mb-1 mb-lg-2'>
-          <Label htmlFor='description' label='Quest Description:' />
+          <Label htmlFor='description' label='Description:' />
           <Input
+            required
             as='textarea'
             id='description'
             placeholder='Enter quest description...'
@@ -53,8 +58,9 @@ export const QuestForm = ({ className }) => {
           />
         </InputGroup>
         <InputGroup className='mb-1 mb-lg-2'>
-          <Label htmlFor='level' label='Quest Level:' />
+          <Label htmlFor='level' label='Required Level:' />
           <Input
+            required
             id='level'
             type='number'
             placeholder='55'

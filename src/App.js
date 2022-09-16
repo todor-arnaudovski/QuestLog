@@ -1,3 +1,5 @@
+import { QuestsProvider } from 'context/QuestsContext';
+
 import 'assets/styles/spacing.scss';
 import 'assets/styles/global.scss';
 import { PageBackground } from 'components/PageBackground';
@@ -14,7 +16,7 @@ import { QuestForm } from 'features/QuestForm';
 
 function App() {
   return (
-    <>
+    <QuestsProvider>
       <PageBackground background={background} />
       <PageContentWrapper content='center'>
         <Container>
@@ -35,7 +37,7 @@ function App() {
           </Grid>
         </Container>
       </PageContentWrapper>
-    </>
+    </QuestsProvider>
   );
 }
 
