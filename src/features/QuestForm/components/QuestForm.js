@@ -85,7 +85,7 @@ export const QuestForm = ({ className }) => {
       <h3 className='h3 mb-2 text-center'>Create New Quest</h3>
       <Form onSubmit={onSubmitHandler}>
         <InputGroup className='mb-1 mb-lg-2' controlId='title'>
-          <Label htmlFor='title' aria-label='Enter Title'>
+          <Label htmlFor='title' ariaLabel='Enter Title'>
             Title: *
           </Label>
           <Input
@@ -102,7 +102,7 @@ export const QuestForm = ({ className }) => {
           </ValidationText>
         </InputGroup>
         <InputGroup className='mb-1 mb-lg-2'>
-          <Label htmlFor='description' aria-label='Enter Description'>
+          <Label htmlFor='description' ariaLabel='Enter Description'>
             Description: *
           </Label>
           <Input
@@ -121,7 +121,7 @@ export const QuestForm = ({ className }) => {
         </InputGroup>
 
         <InputGroup className='mb-1 mb-lg-2'>
-          <Label htmlFor='level' aria-label='Enter Required Level'>
+          <Label htmlFor='level' ariaLabel='Enter Required Level'>
             Required Level: *
           </Label>
           <Input
@@ -139,7 +139,11 @@ export const QuestForm = ({ className }) => {
           </ValidationText>
         </InputGroup>
         <InputGroup className='mb-1 mb-lg-2'>
-          <Label htmlFor='isShareable' label='Select if this quest is shareable' className='mb-0'>
+          <Label
+            htmlFor='isShareable'
+            ariaLabel='Select if this quest is shareable'
+            className='mb-0'
+          >
             This Quest is Shareable:
           </Label>
           <Input
