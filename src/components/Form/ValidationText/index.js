@@ -1,0 +1,1 @@
+export { ValidationText } from './ValidationText';

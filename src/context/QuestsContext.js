@@ -24,7 +24,7 @@ export const QuestsProvider = ({ children }) => {
       description: quest.description,
       level: {
         required: quest.level,
-        recommended: parseInt(quest.level) + 3,
+        recommended: (parseInt(quest.level) + 3).toString(),
       },
       isShareable: quest.isShareable,
       prerequisites: [],
@@ -36,7 +36,7 @@ export const QuestsProvider = ({ children }) => {
   };
 
   return (
-    <QuestsContext.Provider value={{ questList, addNewQuest: createQuest }}>
+    <QuestsContext.Provider value={{ questList, createQuest }}>
       {children}
     </QuestsContext.Provider>
   );

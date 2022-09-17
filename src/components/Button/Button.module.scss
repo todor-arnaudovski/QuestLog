@@ -11,31 +11,35 @@ $transition-duration: 0.3;
   box-shadow: 0 3px 5px 1px #{$color-dark}4d;
   border-radius: 5px;
   transition: all #{$transition-duration}s ease-out;
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
   &.primary {
     background-color: $color-primary;
     color: $color-white;
-    &:hover {
+    &:hover:enabled {
       background-color: darken($color-primary, 10%);
     }
   }
   &.danger {
     background-color: $color-danger;
     color: $color-white;
-    &:hover {
+    &:hover:enabled {
       background-color: darken($color-danger, 10%);
     }
   }
   &.warning {
     background-color: $color-warning;
     color: $color-dark;
-    &:hover {
+    &:hover:enabled {
       background-color: darken($color-warning, 10%);
     }
   }
   &.success {
     background-color: $color-success;
     color: $color-white;
-    &:hover {
+    &:hover:enabled {
       background-color: darken($color-success, 10%);
     }
   }

@@ -1,6 +1,12 @@
 import styles from './Button.module.scss';
 
-export const Button = ({ children, className, type, variant }) => {
+export const Button = ({
+  children,
+  className,
+  type,
+  variant,
+  disabled: isDisabled,
+}) => {
   let color;
 
   switch (variant) {
@@ -26,7 +32,11 @@ export const Button = ({ children, className, type, variant }) => {
     .join(' ');
 
   return (
-    <button type={type || null} className={classNames || null}>
+    <button
+      type={type || null}
+      className={classNames || null}
+      disabled={isDisabled}
+    >
       {children}
     </button>
   );

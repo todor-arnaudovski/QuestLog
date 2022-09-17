@@ -1,32 +1,52 @@
-import { useContext, useReducer } from 'react';
+import { useContext, useReducer, useState, useEffect, useRef } from 'react';
 import { QuestsContext } from 'context/QuestsContext';
-import { initialFormState, formReducer, initializer } from '../reducer';
+import { initialFormState, formReducer } from '../reducer';
 
 import { Form } from 'components/Form';
 import { InputGroup } from 'components/Form/InputGroup';
 import { Label } from 'components/Form/Label';
 import { Input } from 'components/Form/Input';
 import { Button } from 'components/Button';
+import { ValidationText } from 'components/Form/ValidationText';
 
 export const QuestForm = ({ className }) => {
-  const [formState, dispatchForm] = useReducer(
-    formReducer,
-    initialFormState,
-    initializer
-  );
-  const questsContext = useContext(QuestsContext);
+  const [formIsValid, setFormIsValid] = useState(false);
+  const [formState, dispatchForm] = useReducer(formReducer, initialFormState);
 
-  const onTextChangeHandler = (e) => {
+  const { createQuest } = useContext(QuestsContext);
+
+  const titleInputRef = useRef();
+  const descriptionInputRef = useRef();
+  const levelInputRef = useRef();
+
+  const { value: titleValue, isValid: titleIsValid } = formState.title;
+  const { value: descriptionValue, isValid: descriptionIsValid } = formState.description;
+  const { value: levelValue, isValid: levelIsValid } = formState.level;
+  const { isShareable: isShareableValue } = formState;
+
+  useEffect(() => {
+    setFormIsValid(titleIsValid && descriptionIsValid && levelIsValid);
+  }, [titleIsValid, descriptionIsValid, levelIsValid]);
+
+  const textInputChangeHandler = (e) => {
     dispatchForm({
-      type: 'USER_INPUT_TEXT',
+      type: 'USER_TEXT_INPUT',
       field: e.target.name,
       payload: e.target.value,
     });
   };
 
-  const toggleIsShareableHandler = (e) => {
+  const validateTextInputHander = (e) => {
     dispatchForm({
-      type: 'USER_INPUT_CHECKBOX',
+      type: 'TEXT_INPUT_BLUR',
+      field: e.target.name,
+      payload: e.target.value,
+    });
+  };
+
+  const checkboxInputChangeHandler = (e) => {
+    dispatchForm({
+      type: 'USER_CHECKBOX_INPUT',
       field: e.target.name,
       payload: e.target.checked,
     });
@@ -35,12 +55,27 @@ export const QuestForm = ({ className }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    questsContext.addNewQuest(formState);
+    if (formIsValid) {
+      const newQuest = {
+        title: titleValue,
+        description: descriptionValue,
+        level: levelValue,
+        isShareable: isShareableValue,
+      };
 
-    dispatchForm({
-      type: 'RESET',
-      payload: initialFormState,
-    });
+      createQuest(newQuest);
+
+      dispatchForm({
+        type: 'RESET',
+        payload: initialFormState,
+      });
+    } else if (!titleIsValid) {
+      titleInputRef.current.focus();
+    } else if (!descriptionIsValid) {
+      descriptionInputRef.current.focus();
+    } else if (!levelIsValid) {
+      levelInputRef.current.focus();
+    }
   };
 
   const classNames = [className].filter(Boolean).join(' ');
@@ -49,66 +84,76 @@ export const QuestForm = ({ className }) => {
     <div className={classNames || null}>
       <h3 className='h3 mb-2 text-center'>Create New Quest</h3>
       <Form onSubmit={onSubmitHandler}>
-        <InputGroup className='mb-1 mb-lg-2'>
+        <InputGroup className='mb-1 mb-lg-2' controlId='title'>
           <Label htmlFor='title' aria-label='Enter Title'>
-            Title:
+            Title: *
           </Label>
           <Input
-            required
             id='title'
-            type='text'
             placeholder='Enter quest title...'
             name='title'
-            value={formState.title}
-            onChange={onTextChangeHandler}
+            ref={titleInputRef}
+            onChange={textInputChangeHandler}
+            onBlur={validateTextInputHander}
+            value={titleValue}
           />
+          <ValidationText isShown={titleIsValid !== null && !titleIsValid}>
+            You must enter a quest title
+          </ValidationText>
         </InputGroup>
         <InputGroup className='mb-1 mb-lg-2'>
           <Label htmlFor='description' aria-label='Enter Description'>
-            Description:
+            Description: *
           </Label>
           <Input
-            required
             as='textarea'
             id='description'
             placeholder='Enter quest description...'
             name='description'
-            value={formState.description || ''}
-            onChange={onTextChangeHandler}
+            ref={descriptionInputRef}
+            onChange={textInputChangeHandler}
+            onBlur={validateTextInputHander}
+            value={descriptionValue}
           />
+          <ValidationText isShown={descriptionIsValid !== null && !descriptionIsValid}>
+            You must enter a quest description
+          </ValidationText>
         </InputGroup>
+
         <InputGroup className='mb-1 mb-lg-2'>
           <Label htmlFor='level' aria-label='Enter Required Level'>
-            Required Level:
+            Required Level: *
           </Label>
           <Input
-            required
             id='level'
             type='number'
             placeholder='55'
             name='level'
-            value={formState.level || ''}
-            onChange={onTextChangeHandler}
+            ref={levelInputRef}
+            onChange={textInputChangeHandler}
+            onBlur={validateTextInputHander}
+            value={levelValue}
           />
+          <ValidationText isShown={levelIsValid !== null && !levelIsValid}>
+            You must enter a required level
+          </ValidationText>
         </InputGroup>
         <InputGroup className='mb-1 mb-lg-2'>
-          <Label
-            htmlFor='isShareable'
-            label='Select if this quest is shareable'
-            className='mb-0'
-          >
+          <Label htmlFor='isShareable' label='Select if this quest is shareable' className='mb-0'>
             This Quest is Shareable:
           </Label>
           <Input
             id='isShareable'
             type='checkbox'
             name='isShareable'
-            checked={formState.isShareable}
-            onChange={toggleIsShareableHandler}
+            checked={isShareableValue}
+            onChange={checkboxInputChangeHandler}
             className='ms-1'
           />
         </InputGroup>
-        <Button type='submit'>Create Quest</Button>
+        <Button type='submit' disabled={!formIsValid}>
+          Create Quest
+        </Button>
       </Form>
     </div>
   );

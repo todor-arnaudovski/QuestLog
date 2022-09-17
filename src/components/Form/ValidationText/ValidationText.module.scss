@@ -1,0 +1,10 @@
+@import 'assets/styles/variables.scss';
+
+.validation-text {
+  display: none;
+  margin-top: 0.3rem;
+  color: $color-danger;
+  &.show {
+    display: inline-block;
+  }
+}

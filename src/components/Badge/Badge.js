@@ -36,9 +36,14 @@ export const Badge = ({ children, className, position, color }) => {
       break;
   }
 
-  const classes = `${styles.badge} ${styles[variantClass]} ${
-    styles[positionClass]
-  } ${className ? className : ''}`;
+  const classNames = [
+    styles.badge,
+    styles[variantClass],
+    styles[positionClass],
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
-  return <small className={classes}>{children}</small>;
+  return <small className={classNames}>{children}</small>;
 };
