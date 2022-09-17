@@ -1,13 +1,19 @@
 import { forwardRef } from 'react';
 import styles from './Input.module.scss';
 
+export const Select = ({ children, className, onChange: onChageHandler }) => {
+  const classNames = [styles.select, className].filter(Boolean).join(' ');
+
+  return (
+    <select className={classNames} onChange={onChageHandler}>
+      {children}
+    </select>
+  );
+};
+
 export const Input = forwardRef((props, ref) => {
   const { id, type, placeholder, name, value, checked, className } = props;
-  const {
-    as: asElement = 'input',
-    onChange: onChangeHandler,
-    onBlur: onBlurHandler,
-  } = props;
+  const { as: asElement = 'input', onChange: onChangeHandler, onBlur: onBlurHandler } = props;
   const validElements = ['input', 'textarea'];
   const ValidInputElement = validElements.includes(asElement) ? asElement : 'input';
 

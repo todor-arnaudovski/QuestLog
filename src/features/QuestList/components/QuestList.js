@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { QuestsContext } from 'context/QuestsContext';
 
 import styles from './QuestList.module.scss';
@@ -6,20 +6,103 @@ import styles from './QuestList.module.scss';
 import { List } from 'components/List';
 import { ListItem } from 'components/ListItem';
 import { QuestItem } from './QuestItem';
+import { InputGroup } from 'components/Form/InputGroup';
+import { Label } from 'components/Form/Label';
+import { Select } from 'components/Form/Input';
+
+const filterOptions = [
+  { name: 'Latest', value: 'latest' },
+  { name: 'Oldest', value: 'oldest' },
+  { name: 'Level Descending', value: 'levelDesc' },
+  { name: 'Level Ascending', value: 'levelAsc' },
+];
 
 export const QuestList = ({ className }) => {
   const { questList } = useContext(QuestsContext);
+  const [sortedQuestList, setSortedQuestList] = useState([]);
 
-  const classNames = [styles['quest-list'], className, 'pt-1 ps-1 pe-2']
-    .filter(Boolean)
-    .join(' ');
+  useEffect(() => {
+    setSortedQuestList(questList);
+    sortQuestsBy('latest');
+  }, [questList]);
+
+  const sortQuestsByLatest = () => {
+    // extract to helper
+    const sortedQuests = [...questList].reverse();
+
+    setSortedQuestList(sortedQuests);
+  };
+
+  const sortQuestsByOldest = () => {
+    // extract to helper
+    setSortedQuestList(questList);
+  };
+
+  const sortQuestsByLevelDesc = () => {
+    const sortedQuests = [...questList].sort((a, b) => {
+      console.log('desc');
+
+      return a.level > b.level ? -1 : 1;
+    });
+
+    setSortedQuestList(sortedQuests);
+  };
+
+  const sortQuestsByLevelAsc = () => {
+    const sortedQuests = [...questList].sort((a, b) => {
+      return a.level > b.level ? 1 : -1;
+    });
+
+    setSortedQuestList(sortedQuests);
+  };
+
+  const sortQuestsBy = (value) => {
+    switch (value) {
+      case 'latest':
+        sortQuestsByLatest();
+        break;
+      case 'oldest':
+        sortQuestsByOldest();
+        break;
+      case 'levelDesc':
+        sortQuestsByLevelDesc();
+        break;
+      case 'levelAsc':
+        console.log('asc');
+        sortQuestsByLevelAsc();
+        break;
+      default:
+        break;
+    }
+  };
+
+  const selectChangeHandler = (e) => {
+    sortQuestsBy(e.target.value);
+  };
+
+  const classNames = [styles['quest-list'], className, 'pt-1 ps-1 pe-2'].filter(Boolean).join(' ');
 
   return (
     <div>
       <h3 className='h3 text-center'>Available Quests</h3>
+      <InputGroup className='mb-1'>
+        <Label htmlFor='sortQuestsBy' ariaLabel='Sort Quests'>
+          Sort Quests:{' '}
+        </Label>
+        <Select type='select' name='sortQuestsBy' onChange={selectChangeHandler}>
+          {filterOptions &&
+            filterOptions.map((option, i) => {
+              return (
+                <option value={option.value} key={i}>
+                  {option.name}
+                </option>
+              );
+            })}
+        </Select>
+      </InputGroup>
       <List className={classNames} variant='unstyled'>
-        {questList &&
-          questList.map((quest) => {
+        {sortedQuestList &&
+          sortedQuestList.map((quest) => {
             return (
               <ListItem key={quest.id} className='mb-3'>
                 <QuestItem {...quest} />

@@ -7,25 +7,25 @@ export const LevelInfo = ({ level }) => {
     {
       name: 'easy',
       color: 'success',
-      level: level.recommended + 3,
+      level: level + 3,
     },
     {
       name: 'normal',
       color: 'dark',
-      level: level.recommended,
+      level: level + 3,
     },
     {
       name: 'hard',
       color: 'danger',
-      level: level.required,
+      level: level,
     },
   ];
 
   return (
     <div className='mb-1'>
       <h5 className='h5'>Level</h5>
-      <span className='d-block'>Required: {level.required}</span>
-      <span>Recommended: {level.recommended}</span>
+      <span className='d-block'>Required: {level}</span>
+      <span>Recommended: {level + 3}</span>
       <div className='mt-1'>
         <List variant='unstyled' inline>
           {difficulties &&
