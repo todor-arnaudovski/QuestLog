@@ -10,69 +10,70 @@ $breakpoints: (
   'xxl': $screen-xxl,
 );
 $sizes: (
-  '0': 0,
-  '1': 0.618,
-  '2': 1,
-  '3': 1.618,
-  '4': 2.618,
-  '5': 4.236,
+  'auto': auto,
+  '0': 0 + $unit,
+  '1': 0.618 + $unit,
+  '2': 1 + $unit,
+  '3': 1.618 + $unit,
+  '4': 2.618 + $unit,
+  '5': 4.236 + $unit,
 );
 
 @each $size, $amount in $sizes {
   .m-#{$size} {
-    margin-top: $amount + $unit !important;
-    margin-right: $amount + $unit !important;
-    margin-bottom: $amount + $unit !important;
-    margin-left: $amount + $unit !important;
+    margin-top: $amount !important;
+    margin-right: $amount !important;
+    margin-bottom: $amount !important;
+    margin-left: $amount !important;
   }
   .mt-#{$size} {
-    margin-top: $amount + $unit !important;
+    margin-top: $amount !important;
   }
   .mb-#{$size} {
-    margin-bottom: $amount + $unit !important;
+    margin-bottom: $amount !important;
   }
   .ms-#{$size} {
-    margin-left: $amount + $unit !important;
+    margin-left: $amount !important;
   }
   .me-#{$size} {
-    margin-right: $amount + $unit !important;
+    margin-right: $amount !important;
   }
   .mx-#{$size} {
-    margin-left: $amount + $unit !important;
-    margin-right: $amount + $unit !important;
+    margin-left: $amount !important;
+    margin-right: $amount !important;
   }
   .my-#{$size} {
-    margin-top: $amount + $unit !important;
-    margin-bottom: $amount + $unit !important;
+    margin-top: $amount !important;
+    margin-bottom: $amount !important;
   }
 }
 
 @each $size, $amount in $sizes {
   .p-#{$size} {
-    padding-top: $amount + $unit !important;
-    padding-right: $amount + $unit !important;
-    padding-bottom: $amount + $unit !important;
-    padding-left: $amount + $unit !important;
+    padding-top: $amount !important;
+    padding-right: $amount !important;
+    padding-bottom: $amount !important;
+    padding-left: $amount !important;
   }
   .pt-#{$size} {
-    padding-top: $amount + $unit !important;
+    padding-top: $amount !important;
   }
   .pb-#{$size} {
-    padding-bottom: $amount + $unit !important;
+    padding-bottom: $amount !important;
   }
   .ps-#{$size} {
-    padding-left: $amount + $unit !important;
+    padding-left: $amount !important;
   }
   .pe-#{$size} {
-    padding-right: $amount + $unit !important;
+    padding-right: $amount !important;
   }
   .px-#{$size} {
-    padding-left: $amount + $unit !important;
-    padding-right: $amount + $unit !important;
+    padding-left: $amount !important;
+    padding-right: $amount !important;
   }
   .py-#{$size} {
-    padding-top: $amount + $unit !important;
-    padding-bottom: $amount + $unit !important;
+    padding-top: $amount !important;
+    padding-bottom: $amount !important;
   }
 }
 
@@ -82,57 +83,57 @@ $sizes: (
     @media only screen and (min-width: $breakpointValue) {
       // Margin
       .m-#{$breakpointName}-#{$sizeName} {
-        margin-top: $sizeValue + $unit !important;
-        margin-right: $sizeValue + $unit !important;
-        margin-bottom: $sizeValue + $unit !important;
-        margin-left: $sizeValue + $unit !important;
+        margin-top: $sizeValue !important;
+        margin-right: $sizeValue !important;
+        margin-bottom: $sizeValue !important;
+        margin-left: $sizeValue !important;
       }
       .mt-#{$breakpointName}-#{$sizeName} {
-        margin-top: $sizeValue + $unit !important;
+        margin-top: $sizeValue !important;
       }
       .mb-#{$breakpointName}-#{$sizeName} {
-        margin-bottom: $sizeValue + $unit !important;
+        margin-bottom: $sizeValue !important;
       }
       .ms-#{$breakpointName}-#{$breakpointName}-#{$sizeName} {
-        margin-left: $sizeValue + $unit !important;
+        margin-left: $sizeValue !important;
       }
       .me-#{$breakpointName}-#{$sizeName} {
-        margin-right: $sizeValue + $unit !important;
+        margin-right: $sizeValue !important;
       }
       .mx-#{$breakpointName}-#{$sizeName} {
-        margin-left: $sizeValue + $unit !important;
-        margin-right: $sizeValue + $unit !important;
+        margin-left: $sizeValue !important;
+        margin-right: $sizeValue !important;
       }
       .my-#{$breakpointName}-#{$sizeName} {
-        margin-top: $sizeValue + $unit !important;
-        margin-bottom: $sizeValue + $unit !important;
+        margin-top: $sizeValue !important;
+        margin-bottom: $sizeValue !important;
       }
       // Padding
       .p-#{$breakpointName}-#{$sizeName} {
-        padding-top: $sizeValue + $unit !important;
-        padding-right: $sizeValue + $unit !important;
-        padding-bottom: $sizeValue + $unit !important;
-        padding-left: $sizeValue + $unit !important;
+        padding-top: $sizeValue !important;
+        padding-right: $sizeValue !important;
+        padding-bottom: $sizeValue !important;
+        padding-left: $sizeValue !important;
       }
       .pt-#{$breakpointName}-#{$sizeName} {
-        padding-top: $sizeValue + $unit !important;
+        padding-top: $sizeValue !important;
       }
       .pb-#{$breakpointName}-#{$sizeName} {
-        padding-bottom: $sizeValue + $unit !important;
+        padding-bottom: $sizeValue !important;
       }
       .ps-#{$breakpointName}-#{$sizeName} {
-        padding-left: $sizeValue + $unit !important;
+        padding-left: $sizeValue !important;
       }
       .pe-#{$breakpointName}-#{$sizeName} {
-        padding-right: $sizeValue + $unit !important;
+        padding-right: $sizeValue !important;
       }
       .px-#{$breakpointName}-#{$sizeName} {
-        padding-left: $sizeValue + $unit !important;
-        padding-right: $sizeValue + $unit !important;
+        padding-left: $sizeValue !important;
+        padding-right: $sizeValue !important;
       }
       .py-#{$breakpointName}-#{$sizeName} {
-        padding-top: $sizeValue + $unit !important;
-        padding-bottom: $sizeValue + $unit !important;
+        padding-top: $sizeValue !important;
+        padding-bottom: $sizeValue !important;
       }
     }
   }

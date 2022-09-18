@@ -18,7 +18,7 @@ function App() {
   return (
     <QuestsProvider>
       <PageBackground background={background} />
-      <PageContentWrapper content='center'>
+      <PageContentWrapper className='my-4'>
         <Container>
           <Frame className='mb-5'>
             <Header />

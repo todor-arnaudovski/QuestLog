@@ -5,6 +5,10 @@
   }
   &.inline {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
+  }
+  &.center {
+    justify-content: center;
   }
 }

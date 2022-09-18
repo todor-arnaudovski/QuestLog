@@ -6,6 +6,7 @@ export const Button = ({
   type,
   variant,
   disabled: isDisabled,
+  onClick: onClickHandler,
 }) => {
   let color;
 
@@ -27,15 +28,14 @@ export const Button = ({
   }
 
   // Filter out empty class names and joing existing class names
-  const classNames = [styles.btn, styles[color], className]
-    .filter(Boolean)
-    .join(' ');
+  const classNames = [styles.btn, styles[color], className].filter(Boolean).join(' ');
 
   return (
     <button
       type={type || null}
       className={classNames || null}
       disabled={isDisabled}
+      onClick={onClickHandler}
     >
       {children}
     </button>

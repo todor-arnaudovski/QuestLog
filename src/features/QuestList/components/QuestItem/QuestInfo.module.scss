@@ -4,4 +4,27 @@
   border-top: 2px solid $color-dark;
   border-bottom: 2px solid $color-dark;
   padding: $spacer + rem;
+  // opacity: 1;
+  // transition: opacity 0.5s ease-out;
+  &.removed {
+    // opacity: 0;
+    animation-name: fade-out;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+  .remove-button {
+    display: inline-block;
+    position: absolute;
+    top: -0.7rem;
+    right: -0.5rem;
+    padding: 0 0.4rem;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

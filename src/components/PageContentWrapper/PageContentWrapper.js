@@ -1,5 +1,7 @@
 import styles from './PageContentWrapper.module.scss';
 
-export const PageContentWrapper = ({ children }) => {
-  return <div className={styles['page-content-wrapper']}>{children}</div>;
+export const PageContentWrapper = ({ children, className }) => {
+  const classNames = [styles['page-content-wrapper'], className].filter(Boolean).join(' ');
+
+  return <div className={classNames}>{children}</div>;
 };

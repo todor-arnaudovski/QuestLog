@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
-import questsData from 'data/quests.json';
+import { availableQuestsData } from 'data/availableQuests';
+import { v4 as uuidv4 } from 'uuid';
 
 export const QuestsContext = createContext({
   questList: [],
@@ -11,7 +12,7 @@ export const QuestsProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      setQuestList(questsData);
+      setQuestList(availableQuestsData);
     } catch (e) {
       alert(e.Message);
     }
@@ -19,7 +20,7 @@ export const QuestsProvider = ({ children }) => {
 
   const createQuest = (quest) => {
     const newQuest = {
-      id: questList.length + 1,
+      id: uuidv4(),
       title: quest.title,
       description: quest.description,
       level: parseInt(quest.level),
@@ -32,7 +33,17 @@ export const QuestsProvider = ({ children }) => {
     });
   };
 
+  const removeQuest = (questId) => {
+    const filteredQuests = questList.filter((quest) => {
+      return quest.id !== questId;
+    });
+
+    setQuestList(filteredQuests);
+  };
+
   return (
-    <QuestsContext.Provider value={{ questList, createQuest }}>{children}</QuestsContext.Provider>
+    <QuestsContext.Provider value={{ questList, createQuest, removeQuest }}>
+      {children}
+    </QuestsContext.Provider>
   );
 };

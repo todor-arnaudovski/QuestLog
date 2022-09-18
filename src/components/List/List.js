@@ -1,7 +1,8 @@
 import styles from './List.module.scss';
 
-export const List = ({ children, className, variant, inline }) => {
+export const List = ({ children, className, variant, inline, center }) => {
   const isInline = inline ?? false;
+  const isCenter = center ?? false;
   let isUnstyled;
 
   switch (variant) {
@@ -20,6 +21,7 @@ export const List = ({ children, className, variant, inline }) => {
     styles.list,
     isUnstyled ? styles.unstyled : null,
     isInline ? styles.inline : null,
+    isCenter ? styles.center : null,
     className,
   ]
     .filter(Boolean)

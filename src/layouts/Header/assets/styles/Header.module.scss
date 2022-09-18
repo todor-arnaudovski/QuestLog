@@ -1,6 +1,11 @@
+@import 'assets/styles/variables';
+
 .header {
   text-align: center;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+}
+.accepted-quests {
+  margin-left: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #{$color-dark}8b;
 }
