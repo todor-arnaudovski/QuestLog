@@ -9,11 +9,17 @@
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
   }
-  .remove-button {
-    display: inline-block;
-    position: absolute;
-    top: -0.7rem;
-    right: -0.5rem;
+}
+.content-controls {
+  display: inline-block;
+  position: absolute;
+  top: -0.7rem;
+  right: -0.5rem;
+
+  & > button {
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
     padding: 0 0.4rem;
   }
 }

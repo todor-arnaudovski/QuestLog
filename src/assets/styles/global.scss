@@ -58,6 +58,15 @@ h6 {
 }
 // Headings
 $heading-spacer: 0.5;
+$heading-transition: 0.3s;
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  transition: all 0.1s ease-out;
+}
 .h1 {
   font-size: 3.052rem;
   margin-bottom: 1.563 * $heading-spacer + rem;
@@ -98,4 +107,8 @@ $heading-spacer: 0.5;
   background: $color-dark;
   border-radius: 10px;
   cursor: grab;
+}
+// SVG
+svg {
+  vertical-align: middle;
 }
