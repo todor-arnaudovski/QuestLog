@@ -4,8 +4,10 @@
   text-align: center;
   width: 100%;
 }
-.accepted-quests {
-  margin-left: 1rem;
-  padding-left: 1rem;
-  border-left: 2px solid #{$color-dark}8b;
+.list {
+  & > li:not(:first-child) {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid #{$color-dark}8b;
+  }
 }

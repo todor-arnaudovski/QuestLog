@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { QuestsContext } from 'context/QuestsContext';
+import { CurrentQuestsContext } from 'context/CurrentQuestsContext';
 
 import styles from './QuestInfo.module.scss';
 
@@ -12,15 +12,15 @@ import { Button } from 'components/Button';
 export const QuestItem = (props) => {
   const { id, title, description, level, isShareable, prerequisites } = props;
   const isShareableText = isShareable ? 'Shareable' : 'Not shareable';
-  const [isRemoved, setIsRemoved] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
 
-  const { removeQuest } = useContext(QuestsContext);
+  const { addQuest } = useContext(CurrentQuestsContext);
 
-  const removeItemHandler = () => {
-    setIsRemoved(true);
+  const addItemToCurrentQuestsHandler = () => {
+    setIsAdded(true);
 
     const timer = setTimeout(() => {
-      removeQuest(id);
+      addQuest(id);
     }, 500);
 
     return () => {
@@ -30,7 +30,7 @@ export const QuestItem = (props) => {
 
   const classNames = [
     styles['quest-item'],
-    isRemoved ? styles.removed : '',
+    isAdded ? styles.added : '',
     'bg-fade-light position-relative',
   ]
     .filter(Boolean)
@@ -41,8 +41,12 @@ export const QuestItem = (props) => {
       <Badge position='top-left' color={`${isShareable ? 'success' : 'danger'}`}>
         {isShareableText}
       </Badge>
-      <Button className={`${styles['remove-button']}`} variant='danger' onClick={removeItemHandler}>
-        x
+      <Button
+        className={styles['add-button']}
+        variant='success'
+        onClick={addItemToCurrentQuestsHandler}
+      >
+        +
       </Button>
       <h4 className='h4'>{title}</h4>
       <p className='mb-1'>{description}</p>

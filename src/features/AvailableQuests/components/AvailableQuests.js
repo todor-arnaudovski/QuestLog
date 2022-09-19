@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { QuestsContext } from 'context/QuestsContext';
+import { AvailableQuestsContext } from 'context/AvailableQuestsContext';
 
 import styles from './QuestList.module.scss';
 
@@ -17,8 +17,8 @@ const filterOptions = [
   { name: 'Level Ascending', value: 'levelAsc' },
 ];
 
-export const QuestList = ({ className }) => {
-  const { questList } = useContext(QuestsContext);
+export const AvailableQuests = ({ className }) => {
+  const { questList } = useContext(AvailableQuestsContext);
   const [sortedQuestList, setSortedQuestList] = useState([]);
 
   useEffect(() => {
@@ -27,20 +27,17 @@ export const QuestList = ({ className }) => {
   }, [questList]);
 
   const sortQuestsByLatest = () => {
-    // extract to helper
     const sortedQuests = [...questList].reverse();
 
     setSortedQuestList(sortedQuests);
   };
 
   const sortQuestsByOldest = () => {
-    // extract to helper
     setSortedQuestList(questList);
   };
 
   const sortQuestsByLevelDesc = () => {
     const sortedQuests = [...questList].sort((a, b) => {
-      console.log('desc');
 
       return a.level > b.level ? -1 : 1;
     });
@@ -68,7 +65,6 @@ export const QuestList = ({ className }) => {
         sortQuestsByLevelDesc();
         break;
       case 'levelAsc':
-        console.log('asc');
         sortQuestsByLevelAsc();
         break;
       default:

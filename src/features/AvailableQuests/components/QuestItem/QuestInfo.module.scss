@@ -1,0 +1,27 @@
+@import 'assets/styles/_variables.scss';
+
+.quest-item {
+  border-top: 2px solid $color-dark;
+  border-bottom: 2px solid $color-dark;
+  padding: $spacer + rem;
+  &.added {
+    animation-name: fade-out;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+  .add-button {
+    display: inline-block;
+    position: absolute;
+    top: -0.7rem;
+    right: -0.5rem;
+    padding: 0 0.4rem;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

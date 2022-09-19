@@ -1,4 +1,5 @@
-import { QuestsProvider } from 'context/QuestsContext';
+import { AvailableQuestsProvider } from 'context/AvailableQuestsContext';
+import { CurrentQuestsProvider } from 'context/CurrentQuestsContext';
 
 import 'assets/styles/spacing.scss';
 import 'assets/styles/global.scss';
@@ -11,33 +12,41 @@ import { Frame } from 'components/Frame';
 
 import background from 'assets/images/backgrounds/main.jpg';
 import { Header } from 'layouts/Header';
-import { QuestList } from 'features/QuestList';
+import { AvailableQuests } from 'features/AvailableQuests';
+import { CurrentQuests } from 'features/CurrentQuests';
 import { QuestForm } from 'features/QuestForm';
 
 function App() {
   return (
-    <QuestsProvider>
-      <PageBackground background={background} />
-      <PageContentWrapper className='my-4'>
-        <Container>
-          <Frame className='mb-5'>
-            <Header />
-          </Frame>
-          <Grid>
-            <GirdItem lg={6}>
-              <Frame className='mb-4 mb-lg-0'>
-                <QuestList/>
-              </Frame>
-            </GirdItem>
-            <GirdItem lg={6}>
-              <Frame className='mb-4 mb-lg-0'>
-                <QuestForm />
-              </Frame>
-            </GirdItem>
-          </Grid>
-        </Container>
-      </PageContentWrapper>
-    </QuestsProvider>
+    <AvailableQuestsProvider>
+      <CurrentQuestsProvider>
+        <PageBackground background={background} />
+        <PageContentWrapper className='my-3 my-lg-4'>
+          <Container>
+            <Frame className='mb-3 mb-lg-4'>
+              <Header />
+            </Frame>
+            <Grid>
+              <GirdItem lg={6}>
+                <Frame className='mb-3 mb-lg-4'>
+                  <CurrentQuests />
+                </Frame>
+              </GirdItem>
+              <GirdItem lg={6}>
+                <Frame className='mb-3 mb-lg-4'>
+                  <AvailableQuests />
+                </Frame>
+              </GirdItem>
+              <GirdItem>
+                <Frame>
+                  <QuestForm />
+                </Frame>
+              </GirdItem>
+            </Grid>
+          </Container>
+        </PageContentWrapper>
+      </CurrentQuestsProvider>
+    </AvailableQuestsProvider>
   );
 }
 

@@ -4,10 +4,7 @@
   border-top: 2px solid $color-dark;
   border-bottom: 2px solid $color-dark;
   padding: $spacer + rem;
-  // opacity: 1;
-  // transition: opacity 0.5s ease-out;
   &.removed {
-    // opacity: 0;
     animation-name: fade-out;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;

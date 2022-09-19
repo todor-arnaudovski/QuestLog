@@ -1,5 +1,5 @@
 import { useContext, useReducer, useState, useEffect, useRef } from 'react';
-import { QuestsContext } from 'context/QuestsContext';
+import { AvailableQuestsContext } from 'context/AvailableQuestsContext';
 import { initialFormState, formReducer } from '../reducer';
 
 import { Form } from 'components/Form';
@@ -13,7 +13,7 @@ export const QuestForm = ({ className }) => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [formState, dispatchForm] = useReducer(formReducer, initialFormState);
 
-  const { createQuest } = useContext(QuestsContext);
+  const { createQuest } = useContext(AvailableQuestsContext);
 
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
