@@ -28,12 +28,12 @@ function App() {
             </Frame>
             <Grid>
               <GirdItem lg={6}>
-                <Frame className='mb-3 mb-lg-4'>
+                <Frame className='mb-3 mb-lg-4' style={{ minHeight: '50vh' }}>
                   <CurrentQuests />
                 </Frame>
               </GirdItem>
               <GirdItem lg={6}>
-                <Frame className='mb-3 mb-lg-4'>
+                <Frame className='mb-3 mb-lg-4' style={{ minHeight: '50vh' }}>
                   <AvailableQuests />
                 </Frame>
               </GirdItem>

@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { CurrentQuestsContext } from 'context/CurrentQuestsContext';
-import { AvailableQuestsContext } from 'context/AvailableQuestsContext';
 
 import styles from './QuestInfo.module.scss';
 
@@ -16,14 +15,12 @@ export const QuestItem = (props) => {
   const [isRemoved, setIsRemoved] = useState(false);
 
   const { removeQuest } = useContext(CurrentQuestsContext);
-  // const { makeQuestAvailable } = useContext(AvailableQuestsContext);
 
   const removeItemHandler = () => {
     setIsRemoved(true);
 
     const timer = setTimeout(() => {
       removeQuest(id);
-      // makeQuestAvailable(id);
     }, 500);
 
     return () => {

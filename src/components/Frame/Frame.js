@@ -23,7 +23,7 @@ const Corners = () => {
   );
 };
 
-export const Frame = ({ children, className }) => {
+export const Frame = ({ children, className, style }) => {
   const classesNames = [styles.frame, className].filter(Boolean).join(' ');
 
   return (
@@ -31,6 +31,7 @@ export const Frame = ({ children, className }) => {
       style={{
         backgroundImage: `url(${mainBackground})`,
         borderImage: `url(${borderBackground}) 60 round`,
+        ...style
       }}
       className={classesNames || null}
     >
