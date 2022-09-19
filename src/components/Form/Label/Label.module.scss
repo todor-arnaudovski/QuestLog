@@ -1,4 +1,9 @@
+@use 'assets/styles/mixins' as mixin;
+
 .label {
   display: inline-block;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.4rem;
+  @include mixin.min-width-lg {
+    margin-bottom: 0.8rem;
+  }
 }

@@ -1,5 +1,5 @@
 import styles from './Frame.module.scss';
-import mainBackground from './images/background.jpg';
+import mainBackground from 'assets/images/backgrounds/frame-main.jpg';
 import borderBackground from './images/border.jpg';
 import cornerBackground from './images/corner.jpg';
 
@@ -31,7 +31,7 @@ export const Frame = ({ children, className, style }) => {
       style={{
         backgroundImage: `url(${mainBackground})`,
         borderImage: `url(${borderBackground}) 60 round`,
-        ...style
+        ...style,
       }}
       className={classesNames || null}
     >

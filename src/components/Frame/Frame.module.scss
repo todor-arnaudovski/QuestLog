@@ -1,21 +1,19 @@
+@use 'assets/styles/mixins.scss' as mixin;
 @import 'assets/styles/variables.scss';
 
-$position: 1.3rem;
-$dimension: 2rem;
-$corner-positions: 'top-left' 'top' 'left', 'top-right' 'top' 'right',
-  'bottom-left' 'bottom' 'left', 'bottom-right' 'bottom' 'right';
+$corner-positions: 'top-left' 'top' 'left', 'top-right' 'top' 'right', 'bottom-left' 'bottom' 'left',
+  'bottom-right' 'bottom' 'right';
 
 .frame {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   padding: $spacer + rem;
-  border-width: 10px;
+  border-width: 7px;
   border-style: solid;
   position: relative;
   z-index: 99;
-  box-shadow: 0 0 10px 10px #{$color-dark}4d,
-    inset 0 0 10px 5px #{$color-dark}4d;
+  box-shadow: 0 0 10px 10px #{$color-dark}4d, inset 0 0 10px 5px #{$color-dark}4d;
   &:before {
     content: '';
     position: absolute;
@@ -23,19 +21,31 @@ $corner-positions: 'top-left' 'top' 'left', 'top-right' 'top' 'right',
     inset: 0;
     background-color: #{$color-dark}1a;
   }
+  @include mixin.min-width-lg {
+    border-width: 10px;
+  }
 }
-
 .corner {
   position: absolute;
   z-index: 100;
   border-radius: 5px;
-  width: $dimension;
-  height: $dimension;
+  width: 1.5rem;
+  height: 1.5rem;
   box-shadow: 0 0 10px 5px #{$color-dark}4d;
   @each $name, $x, $y in $corner-positions {
     &.#{$name} {
-      #{$x}: -$position;
-      #{$y}: -$position;
+      #{$x}: -1rem;
+      #{$y}: -1rem;
+    }
+  }
+  @include mixin.min-width-lg {
+    width: 2rem;
+    height: 2rem;
+    @each $name, $x, $y in $corner-positions {
+      &.#{$name} {
+        #{$x}: -1.3rem;
+        #{$y}: -1.3rem;
+      }
     }
   }
 }

@@ -1,3 +1,4 @@
+@use 'mixins.scss' as mixin;
 @import 'variables.scss';
 
 * {
@@ -68,28 +69,47 @@ $heading-transition: 0.3s;
   transition: all 0.1s ease-out;
 }
 .h1 {
-  font-size: 3.052rem;
+  font-size: 2.488rem;
   margin-bottom: 1.563 * $heading-spacer + rem;
+  @include mixin.min-width-lg {
+    font-size: 3.052rem;
+    margin-bottom: 1.44 * $heading-spacer + rem;
+  }
 }
 .h2 {
-  font-size: 2.441rem;
+  font-size: 2.074rem;
   margin-bottom: 1.25 * $heading-spacer + rem;
+  @include mixin.min-width-lg {
+    font-size: 2.441rem;
+  }
 }
 .h3 {
-  font-size: 1.953rem;
+  font-size: 1.728rem;
   margin-bottom: 1 * $heading-spacer + rem;
+  @include mixin.min-width-lg {
+    font-size: 1.953rem;
+  }
 }
 .h4 {
-  font-size: 1.563rem;
+  font-size: 1.44rem;
   margin-bottom: 0.8 * $heading-spacer + rem;
+  @include mixin.min-width-lg {
+    font-size: 1.563rem;
+  }
 }
 .h5 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   margin-bottom: 0.64 * $heading-spacer + rem;
+  @include mixin.min-width-lg {
+    font-size: 1.25rem;
+  }
 }
 .h6 {
   font-size: 1rem;
   margin-bottom: 0.512 * $heading-spacer + rem;
+  @include mixin.min-width-lg {
+    font-size: 1rem;
+  }
 }
 // Scrollbar
 /* width */

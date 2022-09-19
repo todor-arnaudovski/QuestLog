@@ -56,7 +56,7 @@ export const QuestItem = (props) => {
           <MdRemove />
         </Button>
       </div>
-      <h4 className={`${isCollapsed ? 'h4' : 'h3'}`}>{title}</h4>
+      <h4 className='h4'>{title}</h4>
       {!isCollapsed && (
         <div className={styles['quest-body']}>
           <p className='mb-1'>{description}</p>

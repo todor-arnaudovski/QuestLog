@@ -2,8 +2,12 @@ import { useContext, useState, useEffect } from 'react';
 import { AvailableQuestsContext } from 'context/AvailableQuestsContext';
 import { sortQuestsByLevelDesc, sortQuestsByLevelAsc } from 'utils/sortQuestsBy';
 
+import frameMainBackground from 'assets/images/backgrounds/frame-main.jpg';
+import frameEmptyBackground from 'assets/images/backgrounds/frame-empty.jpg';
+
 import styles from './QuestList.module.scss';
 
+import { Frame } from 'components/Frame';
 import { List } from 'components/List';
 import { ListItem } from 'components/ListItem';
 import { QuestItem } from './QuestItem';
@@ -49,36 +53,49 @@ export const AvailableQuests = ({ className }) => {
 
   const classNames = [styles['quest-list'], className, 'pt-1 ps-1 pe-2'].filter(Boolean).join(' ');
 
+  const frameBackgroundImage =
+    sortedQuestList.length > 0 ? frameMainBackground : frameEmptyBackground;
+
   return (
-    <div>
+    <Frame
+      className='mb-3 mb-lg-4'
+      style={{ backgroundImage: `url(${frameBackgroundImage})`, minHeight: '50vh' }}
+    >
       <h3 className='h3 text-center'>Available Quests</h3>
       {sortedQuestList.length > 0 && (
-        <InputGroup className='mb-1'>
-          <Label htmlFor='sortQuestsBy' ariaLabel='Sort Quests'>
-            Sort Quests:{' '}
-          </Label>
-          <Select type='select' name='sortQuestsBy' onChange={selectChangeHandler}>
-            {filterOptions &&
-              filterOptions.map((option, i) => {
+        <>
+          <InputGroup className='mb-1'>
+            <Label htmlFor='sortQuestsBy' ariaLabel='Sort Quests'>
+              Sort Quests:{' '}
+            </Label>
+            <Select type='select' name='sortQuestsBy' onChange={selectChangeHandler}>
+              {filterOptions &&
+                filterOptions.map((option, i) => {
+                  return (
+                    <option value={option.value} key={i}>
+                      {option.name}
+                    </option>
+                  );
+                })}
+            </Select>
+          </InputGroup>
+          <List className={classNames} variant='unstyled'>
+            {sortedQuestList &&
+              sortedQuestList.map((quest) => {
                 return (
-                  <option value={option.value} key={i}>
-                    {option.name}
-                  </option>
+                  <ListItem key={quest.id} className='mb-3'>
+                    <QuestItem {...quest} />
+                  </ListItem>
                 );
               })}
-          </Select>
-        </InputGroup>
+          </List>
+        </>
       )}
-      <List className={classNames} variant='unstyled'>
-        {sortedQuestList &&
-          sortedQuestList.map((quest) => {
-            return (
-              <ListItem key={quest.id} className='mb-3'>
-                <QuestItem {...quest} />
-              </ListItem>
-            );
-          })}
-      </List>
-    </div>
+      {sortedQuestList.length === 0 && (
+        <p className='text-center'>
+          It looks a bit empty in here... Why don't you create some quests?
+        </p>
+      )}
+    </Frame>
   );
 };
