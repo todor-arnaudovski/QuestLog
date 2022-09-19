@@ -3,6 +3,9 @@ import { CurrentQuestsProvider } from 'context/CurrentQuestsContext';
 
 import 'assets/styles/spacing.scss';
 import 'assets/styles/global.scss';
+
+import background from 'assets/images/backgrounds/main.jpg';
+
 import { PageBackground } from 'components/PageBackground';
 import { PageContentWrapper } from 'components/PageContentWrapper';
 import { Grid } from 'components/Grid';
@@ -10,11 +13,11 @@ import { GirdItem } from 'components/Grid/GridItem';
 import { Container } from 'components/Container';
 import { Frame } from 'components/Frame';
 
-import background from 'assets/images/backgrounds/main.jpg';
 import { Header } from 'layouts/Header';
 import { AvailableQuests } from 'features/AvailableQuests';
 import { CurrentQuests } from 'features/CurrentQuests';
 import { QuestForm } from 'features/QuestForm';
+import { Footer } from 'layouts/Footer';
 
 function App() {
   return (
@@ -41,6 +44,7 @@ function App() {
             </Grid>
           </Container>
         </PageContentWrapper>
+        <Footer className='py-3 py-lg-4'/>
       </CurrentQuestsProvider>
     </AvailableQuestsProvider>
   );

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AvailableQuestsContext } from 'context/AvailableQuestsContext';
 import { CurrentQuestsContext } from 'context/CurrentQuestsContext';
 
-import styles from '../assets/styles/Header.module.scss';
+import styles from './Header.module.scss';
 import { List } from 'components/List';
 import { ListItem } from 'components/ListItem';
 

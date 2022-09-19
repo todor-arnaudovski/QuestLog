@@ -1,0 +1,14 @@
+@import 'assets/styles/variables';
+
+.footer {
+  position: relative;
+  z-index: 100;
+  background-color: $color-dark;
+  color: $color-light;
+}
+.logo {
+  max-width: 40px;
+  & img {
+    width: 100%;
+  }
+}
