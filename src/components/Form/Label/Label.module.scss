@@ -2,8 +2,8 @@
 
 .label {
   display: inline-block;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
   @include mixin.min-width-lg {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
   }
 }
