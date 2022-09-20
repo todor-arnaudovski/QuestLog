@@ -2,8 +2,6 @@ import styles from './Footer.module.scss';
 
 import logo from 'assets/images/logo.png';
 
-import { Grid } from 'components/Grid';
-import { GirdItem } from 'components/Grid/GridItem';
 import { Container } from 'components/Container';
 
 export const Footer = ({ className }) => {
@@ -13,7 +11,7 @@ export const Footer = ({ className }) => {
     <footer className={classNames}>
       <Container>
         <div className={`${styles.logo} mx-auto mb-1 mb-lg-2`}>
-          <img src={logo} />
+          <img src={logo} alt='Quest Log Logo' />
         </div>
         <span>Copyright 2022</span>
       </Container>
