@@ -6,7 +6,7 @@ export const availableQuestsData = [
       "Well, here you are <name> - the completed Skeleton Key.  I am certain as I can be that this key will allow you within the confines of the Scholomance.  There's only one way to be absolutely sure it works, though.  Waste no time in trying it out, I say.",
     level: 55,
     isShareable: false,
-    prerequisites: ["Araj's Scarab"],
+    prerequisites: ['d94769f9-0d9e-44c2-9a48-288127a70638'],
   },
   {
     id: 'd94769f9-0d9e-44c2-9a48-288127a70638',

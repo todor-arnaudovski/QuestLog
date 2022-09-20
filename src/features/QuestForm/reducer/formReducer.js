@@ -1,18 +1,4 @@
-export const initialFormState = {
-  title: {
-    value: '',
-    isValid: null,
-  },
-  description: {
-    value: '',
-    isValid: null,
-  },
-  level: {
-    value: '',
-    isValid: null,
-  },
-  isShareable: false,
-};
+import { initialFormState } from './initialFormState';
 
 export const formReducer = (state, action) => {
   switch (action.type) {
@@ -33,6 +19,11 @@ export const formReducer = (state, action) => {
         },
       };
     case 'USER_CHECKBOX_INPUT':
+      return {
+        ...state,
+        [action.field]: action.payload,
+      };
+    case 'USER_SELECT_PREREQ':
       return {
         ...state,
         [action.field]: action.payload,

@@ -1,5 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { CurrentQuestsContext } from 'context/CurrentQuestsContext';
+import { AvailableQuestsContext } from 'context/AvailableQuestsContext';
 
 import styles from './QuestInfo.module.scss';
 
@@ -13,11 +14,24 @@ import { Button } from 'components/Button';
 
 export const QuestItem = (props) => {
   const { id, title, description, level, isShareable, prerequisites } = props;
-  const isShareableText = isShareable ? 'Shareable' : 'Not shareable';
+  const [prereqList, setPrereqList] = useState([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
+  const isShareableText = isShareable ? 'Shareable' : 'Not shareable';
+
   const { addQuest } = useContext(CurrentQuestsContext);
+  const { questList: availableQuestsList } = useContext(AvailableQuestsContext);
+
+  useEffect(() => {
+    setPrereqList(() => {
+      return prerequisites.map((prereq) => {
+        return availableQuestsList.find((quest) => {
+          return quest.id === prereq;
+        });
+      });
+    });
+  }, [prerequisites, availableQuestsList]);
 
   const collapseItemHandler = () => {
     setIsCollapsed(!isCollapsed);
@@ -61,12 +75,12 @@ export const QuestItem = (props) => {
         <div className={styles['quest-body']}>
           <p className='mb-1'>{description}</p>
           <LevelInfo level={level} />
-          {prerequisites.length > 0 && (
+          {prereqList.length > 0 && (
             <div>
               <h5 className='h5'>Prerequisites:</h5>
               <List variant='unstyled'>
-                {prerequisites.map((prerequisite, i) => {
-                  return <ListItem key={`${id}-${i}`}>{prerequisite}</ListItem>;
+                {prereqList.map((prereq, i) => {
+                  return <ListItem key={`${id}-${i}`}>{prereq.title}</ListItem>;
                 })}
               </List>
             </div>

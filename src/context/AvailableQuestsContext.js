@@ -34,7 +34,7 @@ export const AvailableQuestsProvider = ({ children }) => {
       description: quest.description,
       level: parseInt(quest.level),
       isShareable: quest.isShareable,
-      prerequisites: [],
+      prerequisites: quest.prerequisites,
     };
 
     setFullQuestList((prevQuests) => {

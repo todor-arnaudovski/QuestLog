@@ -1,0 +1,47 @@
+@import '../variables';
+
+.react-select-container {
+  & .react-select__control {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.5rem;
+    background-color: #{$color-light}bf;
+    border: none;
+    box-shadow: 0px 0px 5px 0 #{$color-dark}4d;
+    width: 100%;
+    max-width: 100%;
+    min-height: 35px;
+    min-width: 100%;
+    border-radius: 0;
+    &:focus-visible {
+      outline: #{$color-primary}bf solid 2px;
+    }
+  }
+  & .react-select__value-container {
+    padding: 0;
+  }
+  & .react-select__multi-value {
+    background-color: $color-light;
+    box-shadow: 0 0 1px 1px #{$color-dark}3d;
+  }
+  & .react-select__multi-value__remove {
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    &:hover {
+      background-color: #{$color-danger}4d;
+      color: $color-danger;
+    }
+  }
+  & .react-select__indicator-separator {
+    background-color: #{$color-dark}4d;
+  }
+  & .react-select__indicator {
+    padding-top: 0;
+    padding-bottom: 0;
+    color: #{$color-dark}4d;
+    cursor: pointer;
+    &:hover {
+      color: #{$color-dark};
+    }
+  }
+}

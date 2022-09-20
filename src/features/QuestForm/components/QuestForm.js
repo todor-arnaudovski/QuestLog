@@ -2,6 +2,9 @@ import { useContext, useReducer, useState, useEffect, useRef } from 'react';
 import { AvailableQuestsContext } from 'context/AvailableQuestsContext';
 import { initialFormState, formReducer } from '../reducer';
 
+import Select from 'react-select';
+import 'assets/styles/vendor/Select.scss';
+
 import { Form } from 'components/Form';
 import { InputGroup } from 'components/Form/InputGroup';
 import { Label } from 'components/Form/Label';
@@ -10,10 +13,26 @@ import { Button } from 'components/Button';
 import { ValidationText } from 'components/Form/ValidationText';
 
 export const QuestForm = ({ className }) => {
-  const [formIsValid, setFormIsValid] = useState(false);
   const [formState, dispatchForm] = useReducer(formReducer, initialFormState);
+  const [formIsValid, setFormIsValid] = useState(false);
+  const [preqOptions, setPreqOptions] = useState([]);
 
-  const { createQuest } = useContext(AvailableQuestsContext);
+  const { questList: availableQuestsList, createQuest } = useContext(AvailableQuestsContext);
+
+  useEffect(() => {
+    setPreqOptions(() => {
+      const optionsList = [];
+
+      for (const quest of availableQuestsList) {
+        optionsList.push({
+          value: quest.id,
+          label: quest.title,
+        });
+      }
+
+      return optionsList;
+    });
+  }, [availableQuestsList]);
 
   const titleInputRef = useRef();
   const descriptionInputRef = useRef();
@@ -23,6 +42,7 @@ export const QuestForm = ({ className }) => {
   const { value: descriptionValue, isValid: descriptionIsValid } = formState.description;
   const { value: levelValue, isValid: levelIsValid } = formState.level;
   const { isShareable: isShareableValue } = formState;
+  const { prerequisites: prerequisitesValue } = formState;
 
   useEffect(() => {
     setFormIsValid(titleIsValid && descriptionIsValid && levelIsValid);
@@ -52,6 +72,17 @@ export const QuestForm = ({ className }) => {
     });
   };
 
+  const prereqChangeHandler = (selectedOptions) => {
+    const fieldName = 'prerequisites';
+    const selectedValues = selectedOptions.map((x) => x.value);
+
+    dispatchForm({
+      type: 'USER_SELECT_PREREQ',
+      field: fieldName,
+      payload: selectedValues,
+    });
+  };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -61,6 +92,7 @@ export const QuestForm = ({ className }) => {
         description: descriptionValue,
         level: levelValue,
         isShareable: isShareableValue,
+        prerequisites: prerequisitesValue,
       };
 
       createQuest(newQuest);
@@ -153,6 +185,17 @@ export const QuestForm = ({ className }) => {
             checked={isShareableValue}
             onChange={checkboxInputChangeHandler}
             className='ms-1'
+          />
+        </InputGroup>
+        <InputGroup className='mb-1 mb-lg-2'>
+          <Label ariaLabel='Select quest prerequisites to add'>Add Prerequisites:</Label>
+          <Select
+            // delimiter=' '
+            options={preqOptions}
+            isMulti
+            onChange={prereqChangeHandler}
+            className='react-select-container'
+            classNamePrefix='react-select'
           />
         </InputGroup>
         <Button type='submit' disabled={!formIsValid}>
